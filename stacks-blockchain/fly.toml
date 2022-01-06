@@ -1,0 +1,37 @@
+# 1. fly volumes create stacks_blockchain_data --region ams --size 10
+# 2. fly launch
+# 3. fly autoscale disable
+# 4. fly scale vm shared-cpu-1x --memory 512
+
+app = "misty-glade-3538"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[mounts]
+  destination = "/root/stacks-blockchain/data"
+  source = "stacks_blockchain_data"
+
+[[services]]
+  http_checks = []
+  internal_port = 10000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 10000
+
+[[services]]
+  internal_port = 10001
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = "10001"
