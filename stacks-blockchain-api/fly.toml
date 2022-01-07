@@ -12,7 +12,6 @@ processes = []
 
 [env]
   NODE_ENV = "production"
-  PG_HOST = "stacks-postgres.internal"
   PG_PORT = 5432
   STACKS_CHAIN_ID = "0x00000001"
   V2_POX_MIN_AMOUNT_USTX = 90000000260
@@ -27,6 +26,7 @@ processes = []
   # PG_USER = ""
   # PG_PASSWORD = ""
   # STACKS_CORE_RPC_HOST = ""
+  # PG_HOST = "stacks-postgres.internal"
 
 [experimental]
   allowed_public_ports = []
