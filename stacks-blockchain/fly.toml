@@ -1,7 +1,6 @@
 # 1. fly volumes create stacks_blockchain_data --region ams --size 10
-# 2. fly launch
-# 3. fly autoscale disable
-# 4. fly scale vm shared-cpu-1x --memory 512
+# 2. fly launch --copy-config --generate-name --now --region ams
+# 3. fly scale vm shared-cpu-1x --memory 512
 
 app = "misty-glade-3538"
 
