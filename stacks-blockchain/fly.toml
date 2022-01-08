@@ -1,4 +1,4 @@
-# 1. fly create apps --generate-name
+# 1. fly apps create --generate-name
 # 2. replace the name of the app in the fly.io file with the one generated previously
 # 3. fly volumes create stacks_blockchain_data --region ams --size 10
 # 4. fly scale vm shared-cpu-1x --memory 512
