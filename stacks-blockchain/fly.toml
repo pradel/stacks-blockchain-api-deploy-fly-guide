@@ -1,8 +1,10 @@
-# 1. fly volumes create stacks_blockchain_data --region ams --size 10
-# 2. fly launch --copy-config --generate-name --now --region ams
-# 3. fly scale vm shared-cpu-1x --memory 512
+# 1. fly create apps --generate-name
+# 2. replace the name of the app in the fly.io file with the one generated previously
+# 3. fly volumes create stacks_blockchain_data --region ams --size 10
+# 4. fly scale vm shared-cpu-1x --memory 512
+# 5. fly deploy --now --region ams
 
-app = "misty-glade-3538"
+app = "stacks-blockchain"
 
 kill_signal = "SIGINT"
 kill_timeout = 5

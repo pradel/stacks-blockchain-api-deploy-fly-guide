@@ -3,7 +3,7 @@
 # 3. fly secrets set PG_DATABASE="summer_thunder_6341" PG_HOST="stacks-postgres.internal" PG_PASSWORD="DbV9V5wK1hKSarO" PG_USER="summer_thunder_6341"
 # 4. fly secrets set STACKS_CORE_RPC_HOST="misty-glade-3538.internal"
 
-app = "summer-thunder-6341"
+app = "stacks-blockchain-api"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
