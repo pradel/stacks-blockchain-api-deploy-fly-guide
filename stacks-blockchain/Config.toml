@@ -20,3 +20,9 @@ read_only_call_limit_read_length = 100000
 read_only_call_limit_write_count = 0
 read_only_call_limit_read_count = 30
 read_only_call_limit_runtime = 1000000000
+
+# Used for sending events to a local stacks-blockchain-api service
+[[events_observer]]
+endpoint = "stacks-node-api.internal:10000"
+retry_count = 255
+events_keys = ["*"]

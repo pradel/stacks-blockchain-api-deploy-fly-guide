@@ -1,0 +1,63 @@
+# 1. fly apps create --generate-name
+# 2. replace the name of the app in the fly.io file with the one generated previously
+# 3. fly postgres attach --postgres-app stacks-postgres
+# 4. fly secrets set PG_DATABASE="summer_thunder_6341" PG_HOST="stacks-postgres.internal" PG_PASSWORD="DbV9V5wK1hKSarO" PG_USER="summer_thunder_6341"
+# 5. fly secrets set STACKS_CORE_RPC_HOST="misty-glade-3538.internal"
+# 6. fly deploy --now --region ams
+
+app = "stacks-blockchain-api"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  NODE_ENV = "production"
+  PG_PORT = 5432
+  STACKS_BLOCKCHAIN_API_DB = "pg"
+  STACKS_BLOCKCHAIN_API_HOST = "0.0.0.0"
+  STACKS_BLOCKCHAIN_API_PORT = 3999
+  STACKS_CHAIN_ID = "0x00000001"
+  STACKS_CORE_EVENT_HOST = "0.0.0.0"
+  STACKS_CORE_EVENT_PORT = 3700
+  STACKS_CORE_RPC_PORT = 10000
+  V2_POX_MIN_AMOUNT_USTX = 90000000260
+  # Following env var needs to be set manually
+  # PG_DATABASE = ""
+  # PG_USER = ""
+  # PG_PASSWORD = ""
+  # STACKS_CORE_RPC_HOST = ""
+  # PG_HOST = "stacks-postgres.internal"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[build]
+  image = "blockstack/stacks-blockchain-api:1.0.5"
+
+[[services]]
+  http_checks = []
+  internal_port = 3999
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[[services]]
+  http_checks = []
+  internal_port = 3700
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 10000
